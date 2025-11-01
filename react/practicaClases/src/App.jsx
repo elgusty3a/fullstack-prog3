@@ -1,6 +1,7 @@
 import "./App.css";
 import Card from "./components/Card/card.jsx";
 import Inputcomponent from "./components/inputComponent/inputComponent.jsx";
+import Tabla from "./components/tabla/tabla.jsx";
 
 const datosCard = {
   titulo : "Zapas re copadas",
@@ -21,6 +22,7 @@ function App() {
         <Inputcomponent />
       </div>
       <h1>Generar una tabla, la cual va a tener datos precargados y cada registro debe tener un boton que muestre por alert el registro</h1>
+      <Tabla />
     </>
   );
 }

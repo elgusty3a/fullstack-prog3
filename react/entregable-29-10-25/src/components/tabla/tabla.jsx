@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Tablabutton from "./tablabutton";
+import Search from "./search.jsx";
 
 function Tabla() {
   const [datos, setDatos] = useState([]);
@@ -12,10 +13,24 @@ function Tabla() {
     datosTabla();
   }, []);
 
-  const eraseUser =(user) => {
+  const eraseUser = (user) => {
     console.log(`Quiero borrar a: ${user.id}, ${user.name}, ${user.username}, ${user.email}`);
-    setDatos(datos.filter(dato => dato.id !== user.id));
-  }
+    setDatos(datos.filter((dato) => dato.id !== user.id));
+  };
+
+  const searchUser = (searchTerm) => {
+    console.log("Buscar usuario:", searchTerm);
+    if (searchTerm === "") {
+      datosTabla();
+    } else {
+      const filterData = datos.filter((dato) =>
+        dato.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        dato.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        dato.email.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setDatos(filterData);
+    }
+  };
 
   const renderData = datos.map((dato) => {
     return (
@@ -34,6 +49,11 @@ function Tabla() {
   return (
     <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
       <h1>LISTA DE USUARIOS</h1>
+      <br />
+      <div>
+        <Search handleChange={searchUser}/>
+      </div>
+      <br />
       <table className="table">
         {/* head */}
         <thead>

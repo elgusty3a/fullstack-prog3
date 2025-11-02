@@ -6,7 +6,7 @@ function Tablabutton(props) {
 	}
 	return (
 		<div>
-			<button onClick={handleButton} className="btn btn-info">Info</button>
+			<button onClick={handleButton} className="btn btn-error">Borrar</button>
 		</div>
 	)
 }

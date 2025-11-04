@@ -4,10 +4,12 @@ import Search from "./search.jsx";
 
 function Tabla() {
   const [datos, setDatos] = useState([]);
+  const [datosFiltrados, setDataFiltered] = useState([]);
   const datosTabla = async () => {
     const response = await fetch("https://jsonplaceholder.typicode.com/users");
     const data = await response.json();
     setDatos(data);
+    setDataFiltered(data);
   };
   useEffect(() => {
     datosTabla();
@@ -15,24 +17,25 @@ function Tabla() {
 
   const eraseUser = (user) => {
     console.log(`Quiero borrar a: ${user.id}, ${user.name}, ${user.username}, ${user.email}`);
+    setDataFiltered(datosFiltrados.filter((dato) => dato.id !== user.id));
     setDatos(datos.filter((dato) => dato.id !== user.id));
   };
 
   const searchUser = (searchTerm) => {
     console.log("Buscar usuario:", searchTerm);
     if (searchTerm === "") {
-      datosTabla();
+      setDataFiltered(datos);
     } else {
       const filterData = datos.filter((dato) =>
         dato.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         dato.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
         dato.email.toLowerCase().includes(searchTerm.toLowerCase())
       );
-      setDatos(filterData);
+      setDataFiltered(filterData);
     }
   };
 
-  const renderData = datos.map((dato) => {
+  const renderData = datosFiltrados.map((dato) => {
     return (
       <tr key={dato.id}>
         <th>{dato.id}</th>

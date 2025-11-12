@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import Search from "../search/search.jsx";
+
 
 function Lista() {
   const [data, setData] = useState([]);
+  const [datosFiltrados, setDataFiltered] = useState([]);
 
   const getApiData = async () => {
     try {
@@ -12,12 +15,25 @@ function Lista() {
       const data = await response.json();
       console.log(data);
       setData(data);
+      setDataFiltered(data);
     } catch (error) {
       console.error("Error fetching API data:", error);
     }
   };
-  
-  const htmlRender = data.map((character) => {
+
+  const searchUser = (searchTerm) => {
+    console.log("Buscar usuario:", searchTerm);
+    if (searchTerm === "") {
+      setDataFiltered(data);
+    } else {
+      const filterData = data.filter((dato) =>
+        dato.fullName.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setDataFiltered(filterData);
+    }
+  };
+
+  const htmlRender = datosFiltrados.map((character) => {
     return (
     <li key={character.id} className="list-row">
       <div>
@@ -47,6 +63,9 @@ function Lista() {
   return (
   <>
     <ul className="list bg-base-100 rounded-box shadow-md">
+      <div>
+        <Search handleChange={searchUser}/>
+      </div>
       <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">
         Personajes de Juego de Tronos
       </li>

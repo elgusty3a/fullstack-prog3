@@ -4,6 +4,7 @@ import Contador from "./components/contador/contador.jsx";
 import Inputcomponent from "./components/inputComponent/inputComponent.jsx";
 import Lista from "./components/lista/lista.jsx";
 import Tabla from "./components/tabla/tabla.jsx";
+import Form3 from "./components/Forms/formEj3.jsx";
 
 const datosCard = {
   titulo: "Zapas re copadas",
@@ -15,6 +16,9 @@ function App() {
 
   return (
     <>
+      <h1>Mediante un formulario, se deberá capturar Usuario y contraseña y persistir los datos en localstorage</h1>
+      <Form3 />
+      <br />
       <h1>Crear un componente y compruebe como se usa el children</h1>
       <Card data={datosCard}>
         <p>Hola esto viene de App por children</p>
@@ -32,6 +36,7 @@ function App() {
       <h1>PRACTICAS DE USESTATE</h1>
       <br />
       <h1>1 Hacer uso de useEffect para consultar datos a un servicio externo y renderice en una lista.</h1>
+      <h3> Filtro en vivo de una lista: Se debe hacer una lista de items de lo que mas les guste, y mediante un input se deberá ir filtrando y mostrando a medida que el usuario escriba.</h3>
       <br />
       <div>
         <Lista />

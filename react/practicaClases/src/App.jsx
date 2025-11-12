@@ -5,6 +5,7 @@ import Inputcomponent from "./components/inputComponent/inputComponent.jsx";
 import Lista from "./components/lista/lista.jsx";
 import Tabla from "./components/tabla/tabla.jsx";
 import Form3 from "./components/Forms/formEj3.jsx";
+import Tareas from "./components/Tareas/tareas.jsx";
 
 const datosCard = {
   titulo: "Zapas re copadas",
@@ -18,6 +19,9 @@ function App() {
     <>
       <h1>Mediante un formulario, se deberá capturar Usuario y contraseña y persistir los datos en localstorage</h1>
       <Form3 />
+      <br />
+      <h1>Se deberá realizar un listado de tareas el cual se deberá mostrar en una tabla las tareas precargadas. Se podrá agregar y eliminar tareas a gusto del usuario.</h1>
+      <Tareas />
       <br />
       <h1>Crear un componente y compruebe como se usa el children</h1>
       <Card data={datosCard}>
